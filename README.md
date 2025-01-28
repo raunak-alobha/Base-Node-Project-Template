@@ -19,34 +19,33 @@ Let's take a look inside the `src` folder.
 
 - `utils` -> this folder contains helper methods , error handlers , constants and other utility methods.
 
+### Setting up the Project
 
-- Inside the `src/config` folder, create a file named as `server-config.js` and write the following code in it:
-```
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
-```
+ - Download this template from github and open it in your text editor 
+ - Go inside the folder path and execute the following command :
+ ```
+ npm install
+ ```
+ - In the root folder create a .env file and add the following variables :
+ ```
+ PORT=<port number>
+ ```
+ example :
+ ```
+ PORT=3000
+ ```
 
+
+- go inside the `src` folder and execute the following command :
+    ```
+    npx sequelize init
+    ```
+- By executing the above command , you will get migrations and seeders folder and a config.json inside the config folder.
 - If you are setting up your development environment, then write the name of uour username and password of your db and in diialect mention whatever db you are using. for example : mysql, postgres etc. 
 
 - If you are setting up test or prod environment , make sure you also replace the host with the hosted db url .
+
+- To run the server , execute the following command :
+    ```
+    npm start
+    ```
