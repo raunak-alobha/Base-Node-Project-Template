@@ -28,7 +28,7 @@ const createAirplane = async(req, res) => {
 }
 
 /**
- * POST : /get-all-airplanes
+ * GET : /get-all-airplanes
  * req-body {}
  */
 
@@ -51,7 +51,7 @@ const getAllAirplanes = async(req, res) => {
 }
 
 /**
- * POST : /airplanes/:id
+ * GET : /airplanes/:id
  * req-body {}
  */
 
@@ -74,9 +74,34 @@ const getAirplane = async(req, res) => {
 
 }
 
+/**
+ * DELETE : /airplanes/:id
+ * req-body {}
+ */
+
+// delete a airplane
+const deleteAirplane = async(req, res) => {
+    try {
+        const airplane = await AirplaneService.deleteAirplane(req.params.id);
+        //Success Response
+        SuccessResponse.data = airplane;
+        SuccessResponse.message = "Successfully deleted an airplane"
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        //ErrorResponse
+        ErrorResponse.error = error
+        ErrorResponse.message = "Not able to delete an airplane"
+        // ErrorResponse.error = error
+        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+
+}
+
 // exports the createAirplane function
 module.exports = {
     createAirplane,
     getAllAirplanes,
     getAirplane,
+    deleteAirplane,
 }
