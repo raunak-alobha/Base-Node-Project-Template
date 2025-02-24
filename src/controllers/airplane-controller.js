@@ -19,12 +19,18 @@ const createAirplane = async(req, res) => {
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
         //ErrorResponse
+        ErrorResponse.error = error
         ErrorResponse.message = "Not able to create an airplane"
         // ErrorResponse.error = error
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
-        // return res.status(error.StatusCode).json(ErrorResponse);
+        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.statusCode).json(ErrorResponse);
     }
 }
+
+/**
+ * POST : /get-all-airplanes
+ * req-body {}
+ */
 
 // get all airplanes
 const getAllAirplanes = async(req, res) => {
@@ -36,15 +42,41 @@ const getAllAirplanes = async(req, res) => {
         return res.status(StatusCodes.OK).json(SuccessResponse);
     } catch (error) {
         //ErrorResponse
+        ErrorResponse.error = error
         ErrorResponse.message = "Not able to fetch all airplanes"
         // ErrorResponse.error = error
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
-        // return res.status(error.StatusCode).json(ErrorResponse);
+        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.statusCode).json(ErrorResponse);
     }
+}
+
+/**
+ * POST : /airplanes/:id
+ * req-body {}
+ */
+
+// get a airplane
+const getAirplane = async(req, res) => {
+    try {
+        const airplane = await AirplaneService.getAirplane(req.params.id);
+        //Success Response
+        SuccessResponse.data = airplane;
+        SuccessResponse.message = "Successfully fetched an airplane"
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        //ErrorResponse
+        ErrorResponse.error = error
+        ErrorResponse.message = "Not able to fetch an airplane"
+        // ErrorResponse.error = error
+        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+
 }
 
 // exports the createAirplane function
 module.exports = {
     createAirplane,
     getAllAirplanes,
+    getAirplane,
 }

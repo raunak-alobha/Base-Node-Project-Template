@@ -1,4 +1,6 @@
 const { Logger } = require('../config/index');
+const { StatusCodes } = require('http-status-codes');
+const AppError = require('../utils/errors/app-error');
 
 class CrudRepository {
 
@@ -33,6 +35,9 @@ class CrudRepository {
     async get(data) {
         // try {
             const response = await this.model.findByPk(data);  // findByPk is a method provided by sequelize to find a record by its primary key
+            if(!response) {
+                throw new AppError('Not able to find the resource', StatusCodes.NOT_FOUND);
+            }
             return response;
         // } catch (error) {
         //     Logger.error("Something went wrong in crud repo: get");

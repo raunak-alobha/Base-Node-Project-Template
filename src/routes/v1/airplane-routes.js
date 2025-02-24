@@ -9,7 +9,10 @@ const router = express.Router();
 router.post('/create', AirplaneMiddlewares.validateCreateRequest, AirplaneController.createAirplane);
 
 //get all airplanes
-router .get('/get-all-airplanes', AirplaneController.getAllAirplanes);
+router.get('/get-all-airplanes', AirplaneController.getAllAirplanes);
+
+//get a airplane
+router.get('/get-airplane/:id', AirplaneController.getAirplane);
 
 
 
