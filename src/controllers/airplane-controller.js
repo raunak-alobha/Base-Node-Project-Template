@@ -75,7 +75,7 @@ const getAirplane = async(req, res) => {
 }
 
 /**
- * DELETE : /airplanes/:id
+ * DELETE : /delete-airplane/:id
  * req-body {}
  */
 
@@ -98,10 +98,35 @@ const deleteAirplane = async(req, res) => {
 
 }
 
+/**
+ * PATCH : /update-airplanes/:id
+ * req-body {}
+ */
+
+// update a airplane
+const updateAirplane = async(req, res) => {
+    try {
+        const airplane = await AirplaneService.updateAirplane(req.params.id, req.body);
+        //Success Response
+        SuccessResponse.data = airplane;
+        SuccessResponse.message = "Successfully updated an airplane"
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        //ErrorResponse
+        ErrorResponse.error = error
+        ErrorResponse.message = "Not able to update an airplane"
+        // ErrorResponse.error = error
+        // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+
+}
+
 // exports the createAirplane function
 module.exports = {
     createAirplane,
     getAllAirplanes,
     getAirplane,
     deleteAirplane,
+    updateAirplane
 }

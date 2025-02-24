@@ -17,6 +17,9 @@ router.get('/get-airplane/:id', AirplaneController.getAirplane);
 //delete a airplane
 router.delete('/delete-airplane/:id', AirplaneController.deleteAirplane);
 
+//update a airplane
+router.patch('/update-airplane/:id', AirplaneController.updateAirplane);
+
 
 
 //export the router
