@@ -6,7 +6,7 @@ const { AirplaneMiddlewares } = require('../../middlewares/index');
 const router = express.Router();
 
 //create a airplane
-router.post('/create', AirplaneMiddlewares.validateCreateRequest, AirplaneController.createAirplane);
+router.post('/create-airplane', AirplaneMiddlewares.validateCreateRequest, AirplaneController.createAirplane);
 
 //get all airplanes
 router.get('/get-all-airplanes', AirplaneController.getAllAirplanes);
