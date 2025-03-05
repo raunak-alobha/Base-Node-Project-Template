@@ -7,7 +7,7 @@ const AppError = require('../utils/errors/app-error');
 const validateCreateRequest = (req, res, next) => {
     if (!req.body.name) {
         //ErrorResponse
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating airport';
         ErrorResponse.error = new AppError(['Name is missing in the request'], StatusCodes.BAD_REQUEST);
         // ErrorResponse.error = {
         //     explanation: 'Model number is missing in the request'
@@ -16,7 +16,7 @@ const validateCreateRequest = (req, res, next) => {
     }
     if (!req.body.code) {
         //ErrorResponse
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating airport';
         ErrorResponse.error = new AppError(['Airport Code is missing in the request'], StatusCodes.BAD_REQUEST);
         // ErrorResponse.error = {
         //     explanation: 'Model number is missing in the request'
@@ -25,7 +25,7 @@ const validateCreateRequest = (req, res, next) => {
     }
     if (!req.body.cityId) {
         //ErrorResponse
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating airport';
         ErrorResponse.error = new AppError(['City Id is missing in the request'], StatusCodes.BAD_REQUEST);
         // ErrorResponse.error = {
         //     explanation: 'Model number is missing in the request'
